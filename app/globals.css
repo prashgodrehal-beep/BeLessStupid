@@ -1,0 +1,284 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── DESIGN TOKENS ─────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg:           #F8F7F4;   /* warm off-white — base page */
+  --surface:      #FFFFFF;   /* cards, panels, inputs */
+  --surface-high: #F1F0EC;   /* slightly darker panels, chips, disabled */
+
+  /* Borders */
+  --border:       #E6E4DF;
+  --border-high:  #D0CEC8;
+
+  /* Text */
+  --text:         #1C1917;   /* near-black, warm — all body copy */
+  --text-muted:   #6B6762;   /* secondary labels, descriptions */
+  --text-dim:     #A8A49E;   /* placeholders, disabled, meta */
+
+  /* Brand amber — darkened for light bg readability */
+  --amber:        #B5720A;
+  --amber-light:  #D4890F;
+  --amber-bg:     #FEF3E2;
+  --amber-border: #F5C97A;
+
+  /* Semantic — green */
+  --green:        #16783A;
+  --green-bg:     #F0FDF4;
+  --green-border: #86EFAC;
+
+  /* Semantic — red */
+  --red:          #C0392B;
+  --red-bg:       #FEF2F2;
+  --red-border:   #FECACA;
+
+  /* Semantic — blue */
+  --blue:         #1D5FAD;
+  --blue-bg:      #EFF6FF;
+  --blue-border:  #BFDBFE;
+
+  /* Semantic — purple */
+  --purple:       #6D28D9;
+  --purple-bg:    #F5F3FF;
+  --purple-border:#C4B5FD;
+}
+
+/* ── RESET ─────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── BASE ──────────────────────────────────────────────────────────────────── */
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm-sans), 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-high);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-high);
+  border-radius: 4px;
+}
+
+/* ── FONT HELPERS ──────────────────────────────────────────────────────────── */
+.font-playfair {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+}
+.font-mono {
+  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
+}
+
+/* ── FORM CONTROLS ─────────────────────────────────────────────────────────── */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-dm-sans), 'Inter', sans-serif;
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px var(--amber-bg);
+}
+
+textarea {
+  min-height: 90px;
+  line-height: 1.65;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: var(--text-dim);
+}
+
+/* ── ANIMATIONS ────────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Animation utility classes */
+.animate-fade-up   { animation: fadeUp    0.30s ease forwards; }
+.animate-blink     { animation: blink     1.40s ease infinite; }
+.animate-scale-in  { animation: scaleIn   0.18s ease forwards; }
+.animate-pop-in    { animation: popIn     0.20s ease forwards; }
+.animate-slide-right { animation: slideRight 0.26s ease forwards; }
+
+/* Staggered children — add delay via inline style */
+.animate-fade-up-delay-1 { animation: fadeUp 0.30s 0.05s ease both; }
+.animate-fade-up-delay-2 { animation: fadeUp 0.30s 0.10s ease both; }
+.animate-fade-up-delay-3 { animation: fadeUp 0.30s 0.15s ease both; }
+
+/* ── CARD BASE (composable) ─────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card-elevated {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+/* ── PROGRESS BAR ──────────────────────────────────────────────────────────── */
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--surface-high);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: var(--amber);
+  transition: width 0.4s ease;
+}
+
+/* ── TAG / CHIP ─────────────────────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--surface-high);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── MODAL OVERLAY ──────────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+}
+
+/* ── BUTTON RESET ───────────────────────────────────────────────────────────── */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ── LINK BASE ──────────────────────────────────────────────────────────────── */
+a {
+  color: var(--amber);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── SECTION DIVIDER ────────────────────────────────────────────────────────── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.section-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── STRESS TEST CHAT BUBBLES ───────────────────────────────────────────────── */
+.chat-bubble-ai {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px 14px 14px 14px;
+  padding: 14px 18px;
+  font-size: 15px;
+  line-height: 1.75;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chat-bubble-user {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  border-radius: 14px 4px 14px 14px;
+  padding: 14px 18px;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  html, body {
+    font-size: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 16px; /* prevent iOS zoom on focus */
+  }
+}
