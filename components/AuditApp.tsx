@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from "react";
 import type { User } from "@supabase/supabase-js";
 import { MODELS, CATEGORIES, CATEGORY_MANDATORY, COMPLEXITY_META } from "@/lib/config";
 import type { AuditSession, Model, Category, IntakeAnswers, ModelId } from "@/lib/types";
+import { useCredits } from "@/lib/useCredits";
+import PricingModal from "@/components/PricingModal";
 
 // ── CLAUDE HELPER ─────────────────────────────────────────────────────────────
 async function callClaude(
@@ -1267,23 +1269,79 @@ function Memo({ session, onReset }: { session: AuditSession; onReset: () => void
 // ── ROOT ORCHESTRATOR ─────────────────────────────────────────────────────────
 export default function AuditApp({ user }: { user: User | null }) {
   type Screen = "category" | "mode" | "quick-intake" | "guided-intake" | "model-select" | "models" | "stress" | "memo";
-  const [screen, setScreen] = useState<Screen>("category");
-  const [session, setSession] = useState<AuditSession>({});
+  const [screen, setScreen]       = useState<Screen>("category");
+  const [session, setSession]     = useState<AuditSession>({});
+  const [showPricing, setShowPricing] = useState(false);
+  const { credits, loading: creditsLoading, deductCredit, addCredits } = useCredits();
+
   const upd   = (patch: Partial<AuditSession>) => setSession(s => ({ ...s, ...patch }));
   const reset = () => { setSession({}); setScreen("category"); };
 
+  // Called when user clicks "Run X Models →" — gate on credits
+  const handleModelsStart = async (models: Model[]) => {
+    upd({ selectedModels: models });
+    if (credits !== null && credits < 1) {
+      setShowPricing(true);
+      return;
+    }
+    const ok = await deductCredit();
+    if (!ok) { setShowPricing(true); return; }
+    setScreen("models");
+  };
+
+  const CreditBadge = () => {
+    if (!user || creditsLoading || credits === null) return null;
+    const low = credits <= 1;
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div
+          onClick={() => setShowPricing(true)}
+          style={{
+            display: "flex", alignItems: "center", gap: 6,
+            padding: "5px 12px", borderRadius: 20, cursor: "pointer",
+            background: low ? "#FEF3E2" : C.surfaceHigh,
+            border: `1px solid ${low ? C.amberBorder : C.border}`,
+            transition: "all .15s",
+          }}
+        >
+          <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 11, fontWeight: 700,
+            color: low ? C.amber : C.textMuted }}>
+            {credits} credit{credits !== 1 ? "s" : ""}
+          </span>
+          {low && <span style={{ fontSize: 10, color: C.amber }}>+ Buy</span>}
+        </div>
+        <a href="/dashboard" style={{ fontFamily: "var(--font-jetbrains)", fontSize: 10,
+          letterSpacing: "0.1em", color: C.textDim, textDecoration: "none",
+          textTransform: "uppercase" as const, borderBottom: `1px solid ${C.border}`, paddingBottom: 1 }}>
+          My Decisions
+        </a>
+      </div>
+    );
+  };
+
   return (
     <div style={{ background: C.bg, color: C.text, minHeight: "100vh" }}>
+      {/* Fixed top-right credit badge */}
       {user && (
-        <div style={{ position: "fixed", top: 0, right: 16, zIndex: 100, display: "flex", gap: 12, alignItems: "center", padding: "12px 0" }}>
-          <a href="/dashboard" style={{ fontFamily: "var(--font-jetbrains)", fontSize: 11, letterSpacing: "0.1em", color: C.textDim, textDecoration: "none", textTransform: "uppercase" as const, borderBottom: `1px solid ${C.border}`, paddingBottom: 1 }}>My Decisions</a>
+        <div style={{ position: "fixed", top: 0, right: 16, zIndex: 100,
+          display: "flex", gap: 12, alignItems: "center", padding: "12px 0" }}>
+          <CreditBadge />
         </div>
       )}
+
+      {/* Pricing modal */}
+      {showPricing && (
+        <PricingModal
+          onClose={() => setShowPricing(false)}
+          onSuccess={n => { addCredits(n); setShowPricing(false); }}
+        />
+      )}
+
       {screen === "category"      && <CategoryPicker onSelect={c => { upd({ category: c }); setScreen("mode"); }} />}
       {screen === "mode"          && <ModeSelector category={session.category!} onSelect={m => setScreen(m === "quick" ? "quick-intake" : "guided-intake")} />}
       {screen === "quick-intake"  && <QuickIntake category={session.category!} onComplete={a => { upd({ intakeAns: a }); setScreen("model-select"); }} />}
       {screen === "guided-intake" && <GuidedIntake category={session.category!} onComplete={a => { upd({ intakeAns: a }); setScreen("model-select"); }} />}
-      {screen === "model-select"  && <ModelSelector category={session.category!} intakeAns={session.intakeAns!} onComplete={models => { upd({ selectedModels: models }); setScreen("models"); }} />}
+      {screen === "model-select"  && <ModelSelector category={session.category!} intakeAns={session.intakeAns!} onComplete={handleModelsStart} />}
       {screen === "models"        && <ModelEngine category={session.category!} intakeAns={session.intakeAns!} selectedModels={session.selectedModels!} onComplete={d => { upd(d); setScreen("stress"); }} />}
       {screen === "stress"        && <StressTest session={session} onComplete={s => { upd(s); setScreen("memo"); }} />}
       {screen === "memo"          && <Memo session={session} onReset={reset} />}

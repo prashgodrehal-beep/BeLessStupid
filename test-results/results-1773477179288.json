@@ -1,0 +1,421 @@
+{
+  "runAt": "2026-03-14T08:32:59.289Z",
+  "elapsed": "403.5s",
+  "summary": {
+    "totalPassed": 18,
+    "totalFailed": 0,
+    "scenarios": 6
+  },
+  "results": [
+    {
+      "id": "career-move",
+      "category": "Career Move",
+      "label": "Senior dev leaving stable job for startup",
+      "stages": {
+        "intake": {
+          "data": {
+            "decision": "Whether to leave a stable MNC job to join a Series A startup as their first engineering hire.",
+            "all_options": "Stay at current MNC job, join the Series A startup, potentially negotiate terms with either company",
+            "gut_choice": "Join the startup - they mention dreaming about this for 3 years and gut says go for it",
+            "gut_conf": "70%",
+            "stakes": "₹4L annual salary reduction, family financial stability with ₹42K monthly EMI, career growth potential, 0.5% ESOP upside, wife's peace of mind",
+            "emotion_now": "Conflicted excitement",
+            "fear": "Financial instability affecting family, startup failure, disappointing wife, losing steady income with mortgage obligations",
+            "assumptions": "The logistics B2B SaaS market has real potential, first-time founder can execute successfully, startup will survive and grow, ESOP will have meaningful value, can handle ₹4L pay cut with current expenses"
+          },
+          "validation": {
+            "pass": true,
+            "missing": []
+          }
+        },
+        "models": {
+          "data": {
+            "insights": {
+              "expected-value": "30% failure rate risks ₹4L+ income loss, but 30% unicorn success could yield ₹50L-2Cr equity upside.",
+              "inversion": "**Critical failure mode:** Accepting ₹4L pay cut without negotiating higher equity for being first engineering hire.",
+              "opp-cost": "**FINDING:** Sacrificing ₹4L salary cut plus ₹32L guaranteed income security with ₹42,000 monthly EMI obligations and young child.",
+              "sunk-cost": "**FINDING:** Subject admits staying due to anchoring to 6 years invested, overriding rational assessment favoring startup opportunity."
+            },
+            "verdict": "Delay"
+          },
+          "validation": {
+            "pass": true,
+            "missing": [],
+            "tooShort": []
+          }
+        },
+        "memo": {
+          "data": {
+            "recommendation": "Delay",
+            "confidence": "High",
+            "bet_size": "None",
+            "headline": "Don't romantic-dream your way into financial recklessness with ₹42K EMIs and a young child.",
+            "why": "The ₹4L income cut plus lost security creates catastrophic downside risk given your ₹42K monthly obligations and dependent child - this isn't just about you anymore. Your 3-year dream is clouding judgment on a decision that could devastate your family's financial stability.",
+            "key_assumptions": [
+              "₹42K EMI obligations are fixed and non-negotiable",
+              "Current MNC income provides sufficient buffer for family obligations",
+              "Startup equity value projections (₹50L-2Cr) are realistic for Series A first hire"
+            ],
+            "disconfirming": [
+              "Startup offers significant equity bump to offset income risk",
+              "You have 12+ months emergency fund beyond EMI obligations",
+              "MNC promotion/raise prospects are genuinely limited long-term"
+            ],
+            "biggest_risk": "Romantic startup dreams overriding parental financial responsibility - equity upside is speculative while family downside is guaranteed.",
+            "next_action": "Negotiate with startup for 2x equity allocation as first engineering hire to justify the income risk, or secure 6-month salary bridge."
+          },
+          "validation": {
+            "pass": true,
+            "issues": []
+          }
+        }
+      },
+      "passed": 3,
+      "failed": 0,
+      "errors": [],
+      "durationMs": 68043
+    },
+    {
+      "id": "new-venture",
+      "category": "Starting a Venture",
+      "label": "Ex-consultant launching D2C brand",
+      "stages": {
+        "intake": {
+          "data": {
+            "decision": "Should I raise a small angel round of ₹50L or continue bootstrapping my D2C spice brand with ₹18L remaining savings.",
+            "all_options": "raise ₹50L angel round, keep bootstrapping with current savings",
+            "gut_choice": "wants to raise angel funding",
+            "gut_conf": "70%",
+            "stakes": "₹18L personal savings, 4-month startup journey, co-founder relationship, and proving the business model",
+            "emotion_now": "anxious uncertainty",
+            "fear": "running out of money before achieving product-market fit and profitable unit economics",
+            "assumptions": "CAC will improve with scale, NRI market demand exists, current growth trajectory will continue, angel investors will be interested at this stage"
+          },
+          "validation": {
+            "pass": true,
+            "missing": []
+          }
+        },
+        "models": {
+          "data": {
+            "insights": {
+              "expected-value": "**65% vs 35% success odds strongly favor angel round despite 15-25% dilution cost.**",
+              "inversion": "**Critical Failure Mode:** Raising ₹50L with only 12 friend/family orders - no real market validation proven yet.",
+              "opp-cost": "**Finding:** Sacrificing 500+ monthly order potential and 12-18 month scaling runway for equity preservation.",
+              "sunk-cost": "**FINDING:** Sunk cost heavily contaminating - anxiety about \"wasting\" ₹4L investment driving rush to raise instead of logical bootstrapping timeline.",
+              "base-rates": "**Gap identified:** User claims \"moderately confident\" but base rate shows 60-70% bootstrap longer - suggests overconfidence in differentiation factors.",
+              "survivorship": "**Finding:** Only seeing funded success stories like Sleepy Owl; missing countless funded D2C failures with poor unit economics."
+            },
+            "verdict": "**Delay**\n\nThe critical insight is glaring: only 12 friend/family orders"
+          },
+          "validation": {
+            "pass": true,
+            "missing": [],
+            "tooShort": []
+          }
+        },
+        "memo": {
+          "data": {
+            "recommendation": "Delay",
+            "confidence": "High",
+            "bet_size": "None",
+            "headline": "12 orders is not market validation - bootstrap to 100+ monthly orders first",
+            "why": "You're rushing to raise based on sunk cost anxiety rather than market evidence. With only 12 friend/family orders, you lack the validation needed for angel funding or confident scaling decisions.",
+            "key_assumptions": [
+              "Current 12 orders represent friend/family purchases, not market validation",
+              "₹18L savings provides 12-18 months runway at current burn",
+              "D2C spice market requires proven unit economics before scaling"
+            ],
+            "disconfirming": [
+              "Orders are from strangers with high repeat rates above 40%",
+              "Clear path to 100+ monthly orders within 90 days with current resources",
+              "Competitor raising successfully with similar or worse metrics"
+            ],
+            "biggest_risk": "Raising ₹50L without market validation leads to premature scaling, burning cash on growth that doesn't work, and poisoning future fundraising",
+            "next_action": "Set 90-day milestone: reach 50+ monthly stranger orders with 30%+ repeat rate before revisiting funding decision"
+          },
+          "validation": {
+            "pass": true,
+            "issues": []
+          }
+        }
+      },
+      "passed": 3,
+      "failed": 0,
+      "errors": [],
+      "durationMs": 85467
+    },
+    {
+      "id": "real-estate",
+      "category": "Real Estate",
+      "label": "First home vs continued renting in Bangalore",
+      "stages": {
+        "intake": {
+          "data": {
+            "decision": "Whether to buy a 3BHK apartment in Whitefield Bangalore for ₹1.1 Cr or continue renting at ₹28,000/month",
+            "all_options": "Buy the under-construction 3BHK apartment for ₹1.1 Cr with ₹85L loan, or continue renting at current location",
+            "gut_choice": "Leaning towards buying despite concerns about high EMI and job mobility",
+            "gut_conf": "40%",
+            "stakes": "₹1.1 Cr investment, ₹28L down payment, long-term financial commitment of ₹75,000 monthly EMI for 15-20 years",
+            "emotion_now": "Conflicted and uncertain",
+            "fear": "Being trapped in a high EMI commitment while changing jobs frequently and potentially needing to relocate",
+            "assumptions": "Property prices will appreciate, current job stability will continue, will stay in Bangalore long-term, builder will deliver on time, rental costs are wasteful spending"
+          },
+          "validation": {
+            "pass": true,
+            "missing": []
+          }
+        },
+        "models": {
+          "data": {
+            "insights": {
+              "expected-value": "**60% buy success vs 85% rent success — renting has 25 percentage points better odds.**",
+              "inversion": "**Critical failure mode:** Choosing under-construction property despite job/location uncertainty creates dual payment trap (rent + EMI).",
+              "opp-cost": "**Finding:** Sacrificing potential Bangalore real estate appreciation and homeownership stability for investment liquidity and job mobility.",
+              "base-rates": "**Finding:** User claims \"medium confidence\" but identifies major differentiator (job mobility, location uncertainty) that significantly reduces their likelihood versus 65-70% base rate.",
+              "kelly": "Finding: EMI consuming 34% of salary violates safe debt-to-income ratios, creating high ruin risk."
+            },
+            "verdict": "Delay"
+          },
+          "validation": {
+            "pass": true,
+            "missing": [],
+            "tooShort": []
+          }
+        },
+        "memo": {
+          "data": {
+            "recommendation": "Avoid",
+            "confidence": "High",
+            "bet_size": "None",
+            "headline": "Under-construction property with 34% debt-to-income ratio plus job uncertainty creates compounding risks that far outweigh potential gains.",
+            "why": "Multiple models converge on danger: 85% rent success vs 60% buy success, Kelly criterion violation with EMI at 34% of salary, and classic trap of dual payments during construction while maintaining job mobility. The math says rent decisively.",
+            "key_assumptions": [
+              "Job location and income remain stable for 15+ years",
+              "Construction completes on time without delays or quality issues",
+              "Bangalore real estate continues appreciating despite current high valuations"
+            ],
+            "disconfirming": [
+              "Job requires relocation within 3-5 years requiring property sale at loss",
+              "Construction delays force 6-12 months of dual rent+EMI payments",
+              "Income disruption makes 34% debt service ratio unsustainable"
+            ],
+            "biggest_risk": "Dual payment trap during construction delays while locked into high EMI commitment that eliminates job mobility and financial flexibility.",
+            "next_action": "Calculate total cost of continuing rent for 5 years vs buying, including opportunity cost of ₹25L down payment invested in diversified portfolio."
+          },
+          "validation": {
+            "pass": true,
+            "issues": []
+          }
+        }
+      },
+      "passed": 3,
+      "failed": 0,
+      "errors": [],
+      "durationMs": 71489
+    },
+    {
+      "id": "new-business",
+      "category": "Buying a Business",
+      "label": "Acquiring a profitable coaching institute",
+      "stages": {
+        "intake": {
+          "data": {
+            "decision": "Whether to purchase a CA coaching institute for ₹1.4 Cr that generates ₹28L net profit annually.",
+            "all_options": "Buy the coaching institute, don't buy it, negotiate a lower price, seek partnership with current owner",
+            "gut_choice": "wants to buy but has significant concerns about execution",
+            "gut_conf": "65%",
+            "stakes": "₹1.4 Cr investment, ₹1 Cr loan obligation, career change, financial security",
+            "emotion_now": "cautious optimism mixed with anxiety",
+            "fear": "students leaving when the well-known owner retires and brand loyalty collapsing",
+            "assumptions": "modernization through online content will retain/attract students, existing faculty will stay, business fundamentals will remain stable during transition, loan approval is feasible"
+          },
+          "validation": {
+            "pass": true,
+            "missing": []
+          }
+        },
+        "models": {
+          "data": {
+            "insights": {
+              "expected-value": "30% chance of catastrophic failure could wipe out ₹40L savings plus leave ₹1Cr loan obligations.",
+              "inversion": "**Critical Failure Mode:** Buying personal relationships (₹1.4Cr) disguised as business - 30-50% student exodus when owner leaves.",
+              "opp-cost": "**FINDING:** Sacrificing ₹22-24L additional annual profit by choosing safe investments over coaching institute acquisition.",
+              "sunk-cost": "**Finding:** No sunk cost contamination detected - decision based on forward-looking financial analysis, not past investments."
+            },
+            "verdict": "Run experiment first"
+          },
+          "validation": {
+            "pass": true,
+            "missing": [],
+            "tooShort": []
+          }
+        },
+        "memo": {
+          "data": {
+            "recommendation": "Delay",
+            "confidence": "Medium",
+            "bet_size": "None",
+            "headline": "This is buying relationships disguised as a business - delay until you can stress-test student retention.",
+            "why": "A 5x P/E ratio screams hidden risks, and your inversion analysis nailed it - you're essentially paying ₹1.4Cr for the owner's personal relationships with students. The 30% catastrophic failure risk combined with ₹1Cr loan exposure creates asymmetric downside that could wipe out your ₹40L savings plus leave you massively overleveraged.",
+            "key_assumptions": [
+              "Students will transfer loyalty from current owner to new management",
+              "Current ₹28L profit margins are sustainable under new ownership",
+              "CA coaching market will remain stable without disruption"
+            ],
+            "disconfirming": [
+              "30-50% student exodus when charismatic owner exits",
+              "Hidden operational complexities not reflected in financials",
+              "Regulatory changes or online disruption crushing traditional coaching"
+            ],
+            "biggest_risk": "You're buying goodwill at asset prices - if students follow the owner instead of staying with the institute, you're left with empty classrooms and ₹1Cr debt.",
+            "next_action": "Negotiate a 6-month transition period where you shadow operations while current owner remains, with success-based pricing tied to actual student retention rates."
+          },
+          "validation": {
+            "pass": true,
+            "issues": []
+          }
+        }
+      },
+      "passed": 3,
+      "failed": 0,
+      "errors": [],
+      "durationMs": 63911
+    },
+    {
+      "id": "early-retire",
+      "category": "Early Retirement",
+      "label": "45-year-old considering FIRE",
+      "stages": {
+        "intake": {
+          "data": {
+            "decision": "Whether to retire now with ₹3.2 Cr corpus, wait to reach ₹4-5 Cr target, or semi-retire with part-time consulting work.",
+            "all_options": "full retirement now, wait until reaching ₹4-5 Cr target, semi-retirement with 2-day consulting",
+            "gut_choice": "semi-retirement with consulting work",
+            "gut_conf": "65%",
+            "stakes": "40+ years of financial security, children's education costs, family lifestyle maintenance",
+            "emotion_now": "burnout and impatience",
+            "fear": "running out of money before the end of 40+ year retirement period",
+            "assumptions": "consulting work will be available and sustainable, spouse will continue earning ₹60k/month, children's education costs will be ₹20-30L, current lifestyle expenses will remain at ₹85k/month"
+          },
+          "validation": {
+            "pass": true,
+            "missing": []
+          }
+        },
+        "models": {
+          "data": {
+            "insights": {
+              "expected-value": "60% odds with ₹3.2Cr now vs 85% waiting for ₹4-5Cr - burnout costs 25% success probability.",
+              "inversion": "**Critical Failure Mode:** Retiring now without testing consulting income viability or building separate education fund buffer.",
+              "opp-cost": "**Finding:** Sacrificing guaranteed ₹1.8L monthly corporate salary plus benefits (PF, insurance, career progression) and fastest wealth-building path.",
+              "kelly": "**Finding:** Full retirement bet sizing too aggressive - ₹3.2Cr for 40+ years creates high ruin probability with limited recovery options."
+            },
+            "verdict": "Partial commit"
+          },
+          "validation": {
+            "pass": true,
+            "missing": [],
+            "tooShort": []
+          }
+        },
+        "memo": {
+          "data": {
+            "recommendation": "Partial commit",
+            "confidence": "High",
+            "bet_size": "Medium",
+            "headline": "Semi-retire with consulting while maintaining income diversification and testing runway assumptions.",
+            "why": "The math strongly favors maintaining some income stream - ₹3.2Cr for 40+ years creates dangerous ruin probability with limited recovery options. Semi-retirement tests consulting viability while preserving optionality and reducing burnout risk that threatens wealth accumulation.",
+            "key_assumptions": [
+              "Consulting can generate ₹50-80K monthly within 6 months",
+              "Current burnout trajectory will reduce corporate performance and wealth building by 25%",
+              "Market returns will average 7-8% real over next decade"
+            ],
+            "disconfirming": [
+              "Consulting market proves oversaturated or income sporadic below ₹30K monthly",
+              "Corporate role improvements materialize reducing burnout significantly",
+              "Major market correction reduces corpus by 30%+ in first 2 years"
+            ],
+            "biggest_risk": "Overestimating consulting income reliability and underestimating the irreversible nature of losing corporate benefits and career momentum.",
+            "next_action": "Negotiate 3-day work week or sabbatical with current employer while simultaneously testing consulting demand through 2-3 pilot projects."
+          },
+          "validation": {
+            "pass": true,
+            "issues": []
+          }
+        }
+      },
+      "passed": 3,
+      "failed": 0,
+      "errors": [],
+      "durationMs": 62941
+    },
+    {
+      "id": "generic",
+      "category": "Other Decision",
+      "label": "Relocating family to Canada",
+      "stages": {
+        "intake": {
+          "data": {
+            "decision": "Whether to accept a job offer in Toronto, Canada requiring family relocation from Hyderabad, India",
+            "all_options": "Accept the Toronto job offer and relocate the family, or decline and stay in Hyderabad",
+            "gut_choice": "Accept the offer - seems drawn to the opportunity despite concerns",
+            "gut_conf": "65%",
+            "stakes": "Family stability, career growth, aging parents' care, wife's career restart, daughter's education continuity, financial future",
+            "emotion_now": "Conflicted excitement mixed with anxiety",
+            "fear": "Making the wrong choice for family and regretting either missing the opportunity or leaving aging parents behind",
+            "assumptions": "Higher salary will improve quality of life, wife can find equivalent work in Canada, daughter will adapt well to new environment, parents' health won't deteriorate rapidly"
+          },
+          "validation": {
+            "pass": true,
+            "missing": []
+          }
+        },
+        "models": {
+          "data": {
+            "insights": {
+              "expected-value": "70% success rate yields ₹8L+ immediate income boost, but 30% risk includes wife's ₹18L income loss.",
+              "inversion": "**Critical Failure Mode:** Assuming permanent residency approval without researching actual immigration timelines and requirements for your specific situation.",
+              "opp-cost": "**Finding:** Sacrificing wife's ₹18L income and parents' health support for only ₹8L salary increase."
+            },
+            "verdict": "Delay"
+          },
+          "validation": {
+            "pass": true,
+            "missing": [],
+            "tooShort": []
+          }
+        },
+        "memo": {
+          "data": {
+            "recommendation": "Delay",
+            "confidence": "High",
+            "bet_size": "None",
+            "headline": "Don't rush into sacrificing ₹18L income and family support for uncertain ₹8L gain.",
+            "why": "The opportunity cost analysis reveals you're trading a guaranteed ₹18L income loss plus invaluable parental health support for only ₹8L salary increase. The inversion model identified a critical blind spot around immigration assumptions that could derail everything.",
+            "key_assumptions": [
+              "Permanent residency will be approved within reasonable timeframe",
+              "Wife can rebuild ₹18L income capacity in Toronto job market",
+              "Parents' health needs won't require immediate physical presence"
+            ],
+            "disconfirming": [
+              "Immigration delays could leave family in limbo for years",
+              "Toronto's cost of living may eliminate the ₹8L salary advantage",
+              "Wife's specialized skills may not transfer to Canadian market easily"
+            ],
+            "biggest_risk": "Burning bridges in Hyderabad before securing immigration status, leaving family stranded between countries with reduced income and support systems.",
+            "next_action": "Research actual PR timelines for your profession and negotiate job offer extension while wife explores Toronto job market remotely."
+          },
+          "validation": {
+            "pass": true,
+            "issues": []
+          }
+        }
+      },
+      "passed": 3,
+      "failed": 0,
+      "errors": [],
+      "durationMs": 51601
+    }
+  ]
+}
