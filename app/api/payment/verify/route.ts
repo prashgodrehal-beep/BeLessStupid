@@ -4,14 +4,16 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import crypto from "crypto";
 import { getPack } from "@/lib/packs";
+export const runtime = 'nodejs';
+
 
 export async function POST(request: NextRequest) {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, packId } = await request.json();
 
     // 1. Verify Razorpay signature
-    const body      = razorpay_order_id + "|" + razorpay_payment_id;
-    const expected  = crypto
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    const expected = crypto
       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET!)
       .update(body)
       .digest("hex");
@@ -25,7 +27,7 @@ export async function POST(request: NextRequest) {
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      { cookies: { getAll: () => cookieStore.getAll(), setAll: () => {} } }
+      { cookies: { getAll: () => cookieStore.getAll(), setAll: () => { } } }
     );
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
@@ -61,9 +63,9 @@ export async function POST(request: NextRequest) {
       await supabase
         .from("user_credits")
         .update({
-          credits:      current.credits + pack.credits,
+          credits: current.credits + pack.credits,
           total_bought: current.total_bought + pack.credits,
-          updated_at:   new Date().toISOString(),
+          updated_at: new Date().toISOString(),
         })
         .eq("user_id", user.id);
     } else {
