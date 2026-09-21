@@ -25,7 +25,17 @@ export default function LandingPage() {
           }}>BLS</div>
           <span style={{ fontFamily: "var(--font-playfair)", fontSize: 18, fontWeight: 700 }}>BeLessStupid</span>
         </div>
-        <div style={{ display: "flex", gap: 10 }}>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button onClick={() => router.push("/learn")} style={{
+            padding: "8px 16px", background: "transparent",
+            border: "1.5px solid #E6E4DF", color: "#6B6762", cursor: "pointer",
+            borderRadius: 8, fontSize: 13, fontFamily: "var(--font-dm-sans)",
+          }}>How it works</button>
+          <button onClick={() => router.push("/sample")} style={{
+            padding: "8px 16px", background: "transparent",
+            border: "1.5px solid #E6E4DF", color: "#6B6762", cursor: "pointer",
+            borderRadius: 8, fontSize: 13, fontFamily: "var(--font-dm-sans)",
+          }}>Sample memo</button>
           <button onClick={() => router.push("/login")} style={{
             padding: "8px 18px", background: "transparent",
             border: "1.5px solid #E6E4DF", color: "#6B6762", cursor: "pointer",
@@ -75,12 +85,18 @@ export default function LandingPage() {
             fontSize: 16, fontWeight: 500, fontFamily: "var(--font-dm-sans)",
             boxShadow: "0 2px 8px rgba(0,0,0,.12)",
           }}>Start My Decision Audit →</button>
-          <button style={{
+          <button onClick={() => router.push("/sample")} style={{
             padding: "13px 24px", background: "#FFFFFF",
             border: "1.5px solid #E6E4DF", color: "#6B6762",
             cursor: "pointer", borderRadius: 8,
             fontSize: 14, fontFamily: "var(--font-dm-sans)",
           }}>See a sample memo</button>
+          <button onClick={() => router.push("/learn")} style={{
+            padding: "13px 24px", background: "#FFFFFF",
+            border: "1.5px solid #E6E4DF", color: "#6B6762",
+            cursor: "pointer", borderRadius: 8,
+            fontSize: 14, fontFamily: "var(--font-dm-sans)",
+          }}>How it works</button>
         </div>
 
         {/* Model grid */}
@@ -93,10 +109,11 @@ export default function LandingPage() {
             {MODELS.map(m => {
               const cx = COMPLEXITY_META[m.complexity as keyof typeof COMPLEXITY_META];
               return (
-                <div key={m.id} style={{
+                <div key={m.id} onClick={() => router.push("/learn")} style={{
                   padding: "16px 14px", background: "#FFFFFF",
                   border: "1px solid #E6E4DF", borderRadius: 12,
-                  boxShadow: "0 1px 3px rgba(0,0,0,.05)",
+                  boxShadow: "0 1px 3px rgba(0,0,0,.05)", cursor: "pointer",
+                  transition: "box-shadow .15s",
                 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
                     <div style={{
@@ -116,9 +133,12 @@ export default function LandingPage() {
               );
             })}
           </div>
+          <div style={{ marginTop: 12, fontSize: 12, color: "#A8A49E" }}>
+            Click any model to learn what it does →
+          </div>
         </div>
 
-        {/* Stats */}
+        {/* Stats row */}
         <div className="animate-fade-up" style={{
           animationDelay: ".24s",
           marginTop: 56, paddingTop: 32, borderTop: "1px solid #E6E4DF",
@@ -128,6 +148,7 @@ export default function LandingPage() {
             { n: "8", l: "Mental Models" },
             { n: "2", l: "Audit Modes" },
             { n: "1", l: "Decision Memo" },
+            { n: "3", l: "Free Audits" },
           ].map(s => (
             <div key={s.l}>
               <div style={{ fontFamily: "var(--font-jetbrains)", fontSize: 28, fontWeight: 700, color: "#B5720A" }}>{s.n}</div>

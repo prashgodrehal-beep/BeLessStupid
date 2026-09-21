@@ -10,7 +10,7 @@
 //
 // Output is written to ./test-results/ as JSON + a human-readable summary.
 
-const fs   = require("fs");
+const fs = require("fs");
 const path = require("path");
 
 // ── Load env ──────────────────────────────────────────────────────────────────
@@ -32,15 +32,15 @@ if (!fs.existsSync(RESULTS_DIR)) fs.mkdirSync(RESULTS_DIR);
 
 // ── Colour helpers ────────────────────────────────────────────────────────────
 const C = {
-  reset:  "\x1b[0m",
-  bold:   "\x1b[1m",
-  dim:    "\x1b[2m",
-  green:  "\x1b[32m",
-  red:    "\x1b[31m",
+  reset: "\x1b[0m",
+  bold: "\x1b[1m",
+  dim: "\x1b[2m",
+  green: "\x1b[32m",
+  red: "\x1b[31m",
   yellow: "\x1b[33m",
-  cyan:   "\x1b[36m",
-  blue:   "\x1b[34m",
-  grey:   "\x1b[90m",
+  cyan: "\x1b[36m",
+  blue: "\x1b[34m",
+  grey: "\x1b[90m",
 };
 const g = s => `${C.green}${s}${C.reset}`;
 const r = s => `${C.red}${s}${C.reset}`;
@@ -58,7 +58,7 @@ async function claude(messages, system, maxTokens = 800) {
       "anthropic-version": "2023-06-01",
     },
     body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-sonnet-4-6",
       max_tokens: maxTokens,
       system,
       messages,
@@ -217,7 +217,7 @@ async function runIntakeExtraction(scenario) {
 // ── Stage 2: Model answers + flash insights ───────────────────────────────────
 async function runModelStage(scenario, intake) {
   const insights = {};
-  let verdict    = null;
+  let verdict = null;
 
   for (const modelId of scenario.mandatory) {
     const model = MODELS[modelId];
@@ -256,12 +256,12 @@ Return ONLY valid JSON: { ${model.questions.map(q => `"${q}":"answer"`).join(", 
 // ── Stage 3: Decision Memo ────────────────────────────────────────────────────
 async function runMemo(scenario, intake, modelResults) {
   const ctx = JSON.stringify({
-    category:   scenario.category,
-    decision:   intake.decision,
-    options:    intake.all_options,
-    gut:        intake.gut_choice,
+    category: scenario.category,
+    decision: intake.decision,
+    options: intake.all_options,
+    gut: intake.gut_choice,
     models_run: scenario.mandatory.map(id => MODELS[id]?.name),
-    insights:   modelResults.insights,
+    insights: modelResults.insights,
   });
 
   const sys = `Munger-style decision auditor. Return ONLY valid JSON:
@@ -278,30 +278,30 @@ async function runMemo(scenario, intake, modelResults) {
 // ── Validate results ──────────────────────────────────────────────────────────
 function validateIntake(intake) {
   const required = ["decision", "all_options", "gut_choice", "gut_conf", "stakes"];
-  const missing  = required.filter(k => !intake[k] || intake[k].trim() === "");
+  const missing = required.filter(k => !intake[k] || intake[k].trim() === "");
   return { pass: missing.length === 0, missing };
 }
 
 function validateInsights(insights, mandatory) {
-  const missing  = mandatory.filter(id => !insights[id] || insights[id].length < 5);
+  const missing = mandatory.filter(id => !insights[id] || insights[id].length < 5);
   const tooShort = mandatory.filter(id => insights[id] && insights[id].split(" ").length < 4);
   return { pass: missing.length === 0 && tooShort.length === 0, missing, tooShort };
 }
 
 function validateMemo(memo) {
-  const validRec  = ["Proceed","Avoid","Delay","Run experiment first","Partial commit","Exit"];
-  const validConf = ["Low","Medium","High"];
-  const validBet  = ["None","Small","Medium","Large","Staged"];
-  const issues    = [];
-  if (!validRec.includes(memo.recommendation))        issues.push(`Bad recommendation: "${memo.recommendation}"`);
-  if (!validConf.includes(memo.confidence))           issues.push(`Bad confidence: "${memo.confidence}"`);
-  if (!validBet.includes(memo.bet_size))              issues.push(`Bad bet_size: "${memo.bet_size}"`);
-  if (!memo.headline || memo.headline.length < 10)    issues.push("Headline too short");
-  if (!memo.why || memo.why.length < 30)              issues.push("Why too short");
+  const validRec = ["Proceed", "Avoid", "Delay", "Run experiment first", "Partial commit", "Exit"];
+  const validConf = ["Low", "Medium", "High"];
+  const validBet = ["None", "Small", "Medium", "Large", "Staged"];
+  const issues = [];
+  if (!validRec.includes(memo.recommendation)) issues.push(`Bad recommendation: "${memo.recommendation}"`);
+  if (!validConf.includes(memo.confidence)) issues.push(`Bad confidence: "${memo.confidence}"`);
+  if (!validBet.includes(memo.bet_size)) issues.push(`Bad bet_size: "${memo.bet_size}"`);
+  if (!memo.headline || memo.headline.length < 10) issues.push("Headline too short");
+  if (!memo.why || memo.why.length < 30) issues.push("Why too short");
   if (!Array.isArray(memo.key_assumptions) || memo.key_assumptions.length < 2) issues.push("Need ≥2 key_assumptions");
-  if (!Array.isArray(memo.disconfirming)   || memo.disconfirming.length < 2)   issues.push("Need ≥2 disconfirming");
+  if (!Array.isArray(memo.disconfirming) || memo.disconfirming.length < 2) issues.push("Need ≥2 disconfirming");
   if (!memo.biggest_risk || memo.biggest_risk.length < 10) issues.push("biggest_risk too short");
-  if (!memo.next_action  || memo.next_action.length < 10)  issues.push("next_action too short");
+  if (!memo.next_action || memo.next_action.length < 10) issues.push("next_action too short");
   return { pass: issues.length === 0, issues };
 }
 
@@ -325,15 +325,15 @@ function printKV(key, value, indent = "    ") {
 
 // ── Run single scenario ───────────────────────────────────────────────────────
 async function runScenario(scenario, index, total) {
-  const start  = Date.now();
+  const start = Date.now();
   const result = {
-    id:        scenario.id,
-    category:  scenario.category,
-    label:     scenario.label,
-    stages:    {},
-    passed:    0,
-    failed:    0,
-    errors:    [],
+    id: scenario.id,
+    category: scenario.category,
+    label: scenario.label,
+    stages: {},
+    passed: 0,
+    failed: 0,
+    errors: [],
     durationMs: 0,
   };
 
@@ -355,12 +355,12 @@ async function runScenario(scenario, index, total) {
       result.failed++;
     }
     result.stages.intake = { data: intake, validation: v };
-    printKV("decision",   intake.decision);
+    printKV("decision", intake.decision);
     printKV("gut_choice", intake.gut_choice);
-    printKV("gut_conf",   intake.gut_conf);
-    printKV("stakes",     intake.stakes);
-    printKV("emotion",    intake.emotion_now);
-    printKV("fear",       intake.fear);
+    printKV("gut_conf", intake.gut_conf);
+    printKV("stakes", intake.stakes);
+    printKV("emotion", intake.emotion_now);
+    printKV("fear", intake.fear);
   } catch (e) {
     console.log(r(`✗ ERROR: ${e.message}`));
     result.failed++; result.errors.push(`intake: ${e.message}`);
@@ -387,7 +387,7 @@ async function runScenario(scenario, index, total) {
 
     console.log(`\n    ${b("Flash Insights:")}`);
     for (const [modelId, insight] of Object.entries(modelResults.insights)) {
-      const icon = { "expected-value":"⚖","base-rates":"📊","sunk-cost":"🕳","bayesian":"🔄","survivorship":"👻","kelly":"🎯","inversion":"🔃","opp-cost":"↔" }[modelId] || "◈";
+      const icon = { "expected-value": "⚖", "base-rates": "📊", "sunk-cost": "🕳", "bayesian": "🔄", "survivorship": "👻", "kelly": "🎯", "inversion": "🔃", "opp-cost": "↔" }[modelId] || "◈";
       console.log(`    ${icon} ${C.cyan}${modelId.padEnd(18)}${C.reset} ${insight}`);
     }
     const verdictColor = { Proceed: C.green, Avoid: C.red, Delay: C.blue }[modelResults.verdict] || C.yellow;
@@ -404,7 +404,7 @@ async function runScenario(scenario, index, total) {
   try {
     process.stdout.write("    Generating memo… ");
     const memo = await runMemo(scenario, intake, modelResults);
-    const v    = validateMemo(memo);
+    const v = validateMemo(memo);
     if (v.pass) {
       console.log(g("✓ PASS"));
       result.passed++;
@@ -417,10 +417,10 @@ async function runScenario(scenario, index, total) {
     const recColor = { Proceed: C.green, Avoid: C.red, Delay: C.blue }[memo.recommendation] || C.yellow;
     console.log();
     printKV("Recommendation", `${recColor}${b(memo.recommendation)}${C.reset} — ${memo.confidence} confidence, ${memo.bet_size} bet`);
-    printKV("Headline",       memo.headline);
-    printKV("Why",            memo.why);
-    printKV("Biggest Risk",   memo.biggest_risk);
-    printKV("Next Action",    memo.next_action);
+    printKV("Headline", memo.headline);
+    printKV("Why", memo.why);
+    printKV("Biggest Risk", memo.biggest_risk);
+    printKV("Next Action", memo.next_action);
     console.log(`\n    ${b("Key Assumptions:")}`);
     memo.key_assumptions?.forEach((a, i) => console.log(`      ${i + 1}. ${a}`));
     console.log(`\n    ${b("What Changes This:")}`);
@@ -434,7 +434,7 @@ async function runScenario(scenario, index, total) {
   // ── Summary ────────────────────────────────────────────────────────────────
   result.durationMs = Date.now() - start;
   const total3 = result.passed + result.failed;
-  const status  = result.failed === 0 ? g("ALL PASS") : result.passed > 0 ? y("PARTIAL") : r("FAILED");
+  const status = result.failed === 0 ? g("ALL PASS") : result.passed > 0 ? y("PARTIAL") : r("FAILED");
   console.log(`\n  ${b("Result:")} ${status}  (${result.passed}/${total3} stages)  ${d(`${(result.durationMs / 1000).toFixed(1)}s`)}`);
 
   return result;
@@ -454,8 +454,8 @@ async function main() {
   console.log(`  ${d(`Started: ${new Date().toLocaleString()}`)}\n`);
 
   const allResults = [];
-  let totalPassed  = 0;
-  let totalFailed  = 0;
+  let totalPassed = 0;
+  let totalFailed = 0;
 
   for (let i = 0; i < SCENARIOS.length; i++) {
     const result = await runScenario(SCENARIOS[i], i + 1, SCENARIOS.length);
@@ -465,9 +465,9 @@ async function main() {
   }
 
   // ── Final summary ──────────────────────────────────────────────────────────
-  const elapsed  = ((Date.now() - totalStart) / 1000).toFixed(1);
-  const allPass  = totalFailed === 0;
-  const line     = "═".repeat(62);
+  const elapsed = ((Date.now() - totalStart) / 1000).toFixed(1);
+  const allPass = totalFailed === 0;
+  const line = "═".repeat(62);
 
   console.log(`\n\n${C.bold}${C.cyan}╔${line}╗${C.reset}`);
   console.log(`${C.bold}${C.cyan}║  FINAL RESULTS${C.reset}${C.bold}${C.cyan}${" ".repeat(47)}║${C.reset}`);
@@ -477,10 +477,10 @@ async function main() {
   console.log(`  ${"Scenario".padEnd(40)} ${"Stages".padEnd(10)} ${"Time".padEnd(8)} Status`);
   console.log(`  ${"─".repeat(70)}`);
   allResults.forEach(r_ => {
-    const status  = r_.failed === 0 ? g("✓ PASS") : r_.passed > 0 ? y("△ PARTIAL") : r("✗ FAIL");
-    const stages  = `${r_.passed}/${r_.passed + r_.failed}`;
-    const time    = `${(r_.durationMs / 1000).toFixed(1)}s`;
-    const label   = r_.label.length > 38 ? r_.label.slice(0, 36) + "…" : r_.label;
+    const status = r_.failed === 0 ? g("✓ PASS") : r_.passed > 0 ? y("△ PARTIAL") : r("✗ FAIL");
+    const stages = `${r_.passed}/${r_.passed + r_.failed}`;
+    const time = `${(r_.durationMs / 1000).toFixed(1)}s`;
+    const label = r_.label.length > 38 ? r_.label.slice(0, 36) + "…" : r_.label;
     console.log(`  ${label.padEnd(40)} ${stages.padEnd(10)} ${time.padEnd(8)} ${status}`);
   });
 
@@ -501,7 +501,7 @@ async function main() {
   // Save full results JSON
   const outFile = path.join(RESULTS_DIR, `results-${Date.now()}.json`);
   fs.writeFileSync(outFile, JSON.stringify({
-    runAt:   new Date().toISOString(),
+    runAt: new Date().toISOString(),
     elapsed: `${elapsed}s`,
     summary: { totalPassed, totalFailed, scenarios: SCENARIOS.length },
     results: allResults,
