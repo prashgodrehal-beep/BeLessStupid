@@ -1243,7 +1243,7 @@ function Memo({ session, onReset }: { session: AuditSession; onReset: () => void
           <p style={{ fontSize: 14, color: C.textMuted, marginBottom: 18, lineHeight: 1.7 }}>
             Book a Decision Strategy Session with Prashanth — Decision Science Coach &amp; AI Strategist at GrowthAspire
           </p>
-          <Btn onClick={() => window.open("https://growthaspire.com", "_blank")} style={{ padding: "13px 28px", fontSize: 15 }}>
+          <Btn onClick={() => window.open("https://topmate.io/prashanth_decision_coach/2223783", "_blank")} style={{ padding: "13px 28px", fontSize: 15 }}>
             Book a Strategy Session →
           </Btn>
         </div>
