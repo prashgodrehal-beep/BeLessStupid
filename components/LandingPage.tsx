@@ -2,6 +2,7 @@
 // components/LandingPage.tsx
 
 import { useRouter } from "next/navigation";
+import Footer from "@/components/Footer";
 import { MODELS, COMPLEXITY_META } from "@/lib/config";
 
 export default function LandingPage() {
@@ -157,6 +158,7 @@ export default function LandingPage() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

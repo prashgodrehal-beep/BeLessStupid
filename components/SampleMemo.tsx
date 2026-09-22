@@ -2,6 +2,7 @@
 // components/SampleMemo.tsx
 
 import { useState } from "react";
+import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 
 const C = {
@@ -451,6 +452,7 @@ export default function SampleMemo() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

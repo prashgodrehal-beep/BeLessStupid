@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/Footer";
 
 const C = {
   bg: "#F8F7F4", surface: "#FFFFFF", surfaceHigh: "#F1F0EC",
@@ -400,6 +401,7 @@ export default function LearnPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
