@@ -37,33 +37,33 @@ async function saveDecision(session: AuditSession) {
 // logic (hover states, category colours, etc.).
 const C = {
   // Backgrounds
-  bg:           "#F8F7F4",
-  surface:      "#FFFFFF",
-  surfaceHigh:  "#F1F0EC",
+  bg: "#F8F7F4",
+  surface: "#FFFFFF",
+  surfaceHigh: "#F1F0EC",
   // Borders
-  border:       "#E6E4DF",
-  borderHigh:   "#D0CEC8",
+  border: "#E6E4DF",
+  borderHigh: "#D0CEC8",
   // Text
-  text:         "#1C1917",
-  textMuted:    "#6B6762",
-  textDim:      "#A8A49E",
+  text: "#1C1917",
+  textMuted: "#6B6762",
+  textDim: "#A8A49E",
   // Brand amber (darkened for light-bg contrast)
-  amber:        "#B5720A",
-  amberLight:   "#D4890F",
-  amberBg:      "#FEF3E2",
-  amberBorder:  "#F5C97A",
+  amber: "#B5720A",
+  amberLight: "#D4890F",
+  amberBg: "#FEF3E2",
+  amberBorder: "#F5C97A",
   // Semantic
-  red:          "#C0392B",
-  redBg:        "#FEF2F2",
-  redBorder:    "#FECACA",
-  green:        "#16783A",
-  greenBg:      "#F0FDF4",
-  greenBorder:  "#86EFAC",
-  blue:         "#1D5FAD",
-  blueBg:       "#EFF6FF",
-  blueBorder:   "#BFDBFE",
-  purple:       "#6D28D9",
-  purpleBg:     "#F5F3FF",
+  red: "#C0392B",
+  redBg: "#FEF2F2",
+  redBorder: "#FECACA",
+  green: "#16783A",
+  greenBg: "#F0FDF4",
+  greenBorder: "#86EFAC",
+  blue: "#1D5FAD",
+  blueBg: "#EFF6FF",
+  blueBorder: "#BFDBFE",
+  purple: "#6D28D9",
+  purpleBg: "#F5F3FF",
   purpleBorder: "#C4B5FD",
 };
 
@@ -78,9 +78,9 @@ const Btn = ({
   style?: React.CSSProperties;
 }) => {
   const variants: Record<string, React.CSSProperties> = {
-    primary: { background: C.amber,       color: "#FFF",        boxShadow: "0 1px 3px rgba(0,0,0,.12)" },
-    ghost:   { background: C.surface,     color: C.textMuted,   border: `1.5px solid ${C.border}` },
-    outline: { background: "transparent", color: C.amber,       border: `1.5px solid ${C.amberBorder}` },
+    primary: { background: C.amber, color: "#FFF", boxShadow: "0 1px 3px rgba(0,0,0,.12)" },
+    ghost: { background: C.surface, color: C.textMuted, border: `1.5px solid ${C.border}` },
+    outline: { background: "transparent", color: C.amber, border: `1.5px solid ${C.amberBorder}` },
   };
   return (
     <button
@@ -298,12 +298,12 @@ function FlashInsight({ model, text, onDismiss }: {
 function VerdictBadge({ verdict, done, total }: { verdict: string; done: number; total: number }) {
   if (!verdict || done === 0) return null;
   const VS: Record<string, { c: string; bg: string; border: string; i: string }> = {
-    "Proceed":              { c: C.green,  bg: C.greenBg,  border: C.greenBorder,  i: "✓" },
-    "Avoid":                { c: C.red,    bg: C.redBg,    border: C.redBorder,    i: "✕" },
-    "Delay":                { c: C.blue,   bg: C.blueBg,   border: C.blueBorder,   i: "⏸" },
-    "Run experiment first": { c: C.amber,  bg: C.amberBg,  border: C.amberBorder,  i: "⚗" },
-    "Partial commit":       { c: C.amber,  bg: C.amberBg,  border: C.amberBorder,  i: "◑" },
-    "Exit":                 { c: C.red,    bg: C.redBg,    border: C.redBorder,    i: "↩" },
+    "Proceed": { c: C.green, bg: C.greenBg, border: C.greenBorder, i: "✓" },
+    "Avoid": { c: C.red, bg: C.redBg, border: C.redBorder, i: "✕" },
+    "Delay": { c: C.blue, bg: C.blueBg, border: C.blueBorder, i: "⏸" },
+    "Run experiment first": { c: C.amber, bg: C.amberBg, border: C.amberBorder, i: "⚗" },
+    "Partial commit": { c: C.amber, bg: C.amberBg, border: C.amberBorder, i: "◑" },
+    "Exit": { c: C.red, bg: C.redBg, border: C.redBorder, i: "↩" },
   };
   const vs = VS[verdict] || { c: C.amber, bg: C.amberBg, border: C.amberBorder, i: "◈" };
   return (
@@ -386,8 +386,8 @@ function ModeSelector({ category, onSelect }: { category: Category; onSelect: (m
     {
       id: "quick" as const, icon: "⚡", title: "Quick Audit", time: "~5 min",
       color: C.amber, bg: C.amberBg, border: C.amberBorder,
-      desc: "Describe your decision in your own words. Claude extracts the structure and runs the models.",
-      tags: ["Free-form input", "Claude extracts context", "Complete memo"],
+      desc: "Describe your decision in your own words. BLS extracts the structure and runs the models.",
+      tags: ["Free-form input", "BLS extracts context", "Complete memo"],
     },
     {
       id: "guided" as const, icon: "🧭", title: "Guided Audit", time: "~10 min",
@@ -489,7 +489,7 @@ function QuickIntake({ category, onComplete }: { category: Category; onComplete:
           fontWeight: 700, marginBottom: 10, lineHeight: 1.25, color: C.text,
         }}>Think out loud. No structure needed.</h2>
         <p style={{ fontSize: 16, color: C.textMuted, marginBottom: 24, lineHeight: 1.7 }}>
-          Write what the decision is, what&apos;s pulling you, what you&apos;re afraid of. Claude reads it and extracts the structure.
+          Write what the decision is, what&apos;s pulling you, what you&apos;re afraid of. BLS reads it and extracts the structure.
         </p>
         <div style={{ position: "relative" }}>
           <textarea
@@ -536,14 +536,14 @@ function GuidedIntake({ category, onComplete }: { category: Category; onComplete
   const set = (k: string, v: string) => setAns(p => ({ ...p, [k]: v }));
 
   const required = [
-    { id: "decision",    label: "State the decision in one clear sentence", type: "text",     placeholder: "e.g. Should I quit my job to build my startup full-time?" },
-    { id: "all_options", label: "List ALL realistic options — including doing nothing",  type: "textarea", placeholder: "Option A: ...\nOption B: ...\nOption C: Do nothing" },
-    { id: "gut_choice",  label: "What does your gut want? How confident? (0–100%)",   type: "text",     placeholder: "I want to quit — about 65% confident" },
+    { id: "decision", label: "State the decision in one clear sentence", type: "text", placeholder: "e.g. Should I quit my job to build my startup full-time?" },
+    { id: "all_options", label: "List ALL realistic options — including doing nothing", type: "textarea", placeholder: "Option A: ...\nOption B: ...\nOption C: Do nothing" },
+    { id: "gut_choice", label: "What does your gut want? How confident? (0–100%)", type: "text", placeholder: "I want to quit — about 65% confident" },
   ];
   const optional = [
-    { id: "worst_case",  label: "Worst case if this goes wrong?",          type: "textarea", placeholder: "What exactly happens to your life?" },
-    { id: "assumptions", label: "Key assumptions driving your view?",      type: "textarea", placeholder: "I assume the market exists..." },
-    { id: "emotion_now", label: "What emotion is loudest right now?",      type: "text",     placeholder: "Fear / Excitement / Urgency / Regret..." },
+    { id: "worst_case", label: "Worst case if this goes wrong?", type: "textarea", placeholder: "What exactly happens to your life?" },
+    { id: "assumptions", label: "Key assumptions driving your view?", type: "textarea", placeholder: "I assume the market exists..." },
+    { id: "emotion_now", label: "What emotion is loudest right now?", type: "text", placeholder: "Fear / Excitement / Urgency / Regret..." },
   ];
   const ok = required.every(f => ans[f.id]?.trim());
 
@@ -643,7 +643,7 @@ function ModelSelector({ category, intakeAns, onComplete }: {
   const selectedModels = MODELS.filter(m => selected.has(m.id));
   const estMins = selectedModels.reduce((a, m) => a + (m.complexity === "simple" ? 2 : m.complexity === "medium" ? 4 : 6), 0);
   const mandatory = MODELS.filter(m => mandatoryIds.includes(m.id as ModelId));
-  const optional  = MODELS.filter(m => !mandatoryIds.includes(m.id as ModelId));
+  const optional = MODELS.filter(m => !mandatoryIds.includes(m.id as ModelId));
 
   return (
     <div style={{ minHeight: "100vh", background: C.bg, padding: 24 }}>
@@ -671,7 +671,7 @@ function ModelSelector({ category, intakeAns, onComplete }: {
           <div style={{ flex: 1, minWidth: 0 }}>
             <SectionDivider label={`🔒 Required for ${category.label}`} count={mandatory.length} color={C.amber} />
             {mandatory.map(m => (
-              <ModelCard key={m.id} model={m} checked mandatory onExplain={() => setExplainer(m)} onToggle={() => {}} />
+              <ModelCard key={m.id} model={m} checked mandatory onExplain={() => setExplainer(m)} onToggle={() => { }} />
             ))}
             <div style={{ marginTop: 24 }}>
               <SectionDivider label="Optional — add for deeper audit" count={optional.length} color={C.textMuted} />
@@ -777,20 +777,20 @@ function ModelEngine({ category, intakeAns, selectedModels, onComplete }: {
   category: Category; intakeAns: IntakeAnswers; selectedModels: Model[];
   onComplete: (d: AuditSession) => void;
 }) {
-  const [idx, setIdx]         = useState(0);
-  const [mAns, setMAns]       = useState<Record<string, Record<string, string>>>({});
-  const [explainer, setExp]   = useState<Model | null>(null);
-  const [insights, setIns]    = useState<Record<string, string>>({});
+  const [idx, setIdx] = useState(0);
+  const [mAns, setMAns] = useState<Record<string, Record<string, string>>>({});
+  const [explainer, setExp] = useState<Model | null>(null);
+  const [insights, setIns] = useState<Record<string, string>>({});
   const [verdict, setVerdict] = useState<string | null>(null);
-  const [generating, setGen]  = useState(false);
-  const [dismissed, setDis]   = useState<Set<string>>(new Set());
+  const [generating, setGen] = useState(false);
+  const [dismissed, setDis] = useState<Set<string>>(new Set());
 
-  const model        = selectedModels[idx];
-  const cur          = mAns[model?.id] || {};
-  const upd          = (fid: string, v: string) => setMAns(p => ({ ...p, [model.id]: { ...(p[model.id] || {}), [fid]: v } }));
-  const ok           = model?.questions.every(q => cur[q.id]?.trim());
+  const model = selectedModels[idx];
+  const cur = mAns[model?.id] || {};
+  const upd = (fid: string, v: string) => setMAns(p => ({ ...p, [model.id]: { ...(p[model.id] || {}), [fid]: v } }));
+  const ok = model?.questions.every(q => cur[q.id]?.trim());
   const completedCount = Object.keys(insights).length;
-  const isMandatory  = (CATEGORY_MANDATORY[category.id as keyof typeof CATEGORY_MANDATORY] || []).includes(model?.id);
+  const isMandatory = (CATEGORY_MANDATORY[category.id as keyof typeof CATEGORY_MANDATORY] || []).includes(model?.id);
 
   const genInsight = async (m: Model, answers: Record<string, string>, curIns: Record<string, string>) => {
     const sys = `Decision auditor flash insight. ${m.flashPrompt} Be specific — reference actual user answers. No filler.`;
@@ -963,11 +963,11 @@ function ModelEngine({ category, intakeAns, selectedModels, onComplete }: {
 
 // ── SCREEN: STRESS TEST ───────────────────────────────────────────────────────
 function StressTest({ session, onComplete }: { session: AuditSession; onComplete: (s: AuditSession) => void }) {
-  const [msgs, setMsgs]     = useState<Array<{ role: string; content: string }>>([]);
-  const [inp, setInp]       = useState("");
+  const [msgs, setMsgs] = useState<Array<{ role: string; content: string }>>([]);
+  const [inp, setInp] = useState("");
   const [loading, setLoading] = useState(false);
-  const [count, setCount]   = useState(0);
-  const [done, setDone]     = useState(false);
+  const [count, setCount] = useState(0);
+  const [done, setDone] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const MAX = 4;
 
@@ -1085,7 +1085,7 @@ Rules: ONE question per message. Target biggest contradiction. Under 100 words. 
 
 // ── SCREEN: DECISION MEMO ─────────────────────────────────────────────────────
 function Memo({ session, onReset }: { session: AuditSession; onReset: () => void }) {
-  const [memo, setMemo]     = useState<Record<string, unknown> | null>(null);
+  const [memo, setMemo] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => { generate(); }, []);
@@ -1119,12 +1119,12 @@ function Memo({ session, onReset }: { session: AuditSession; onReset: () => void
   );
 
   const RS: Record<string, { c: string; bg: string; border: string; i: string }> = {
-    "Proceed":              { c: C.green,  bg: C.greenBg,  border: C.greenBorder,  i: "✓" },
-    "Avoid":                { c: C.red,    bg: C.redBg,    border: C.redBorder,    i: "✕" },
-    "Delay":                { c: C.blue,   bg: C.blueBg,   border: C.blueBorder,   i: "⏸" },
-    "Run experiment first": { c: C.amber,  bg: C.amberBg,  border: C.amberBorder,  i: "⚗" },
-    "Partial commit":       { c: C.amber,  bg: C.amberBg,  border: C.amberBorder,  i: "◑" },
-    "Exit":                 { c: C.red,    bg: C.redBg,    border: C.redBorder,    i: "↩" },
+    "Proceed": { c: C.green, bg: C.greenBg, border: C.greenBorder, i: "✓" },
+    "Avoid": { c: C.red, bg: C.redBg, border: C.redBorder, i: "✕" },
+    "Delay": { c: C.blue, bg: C.blueBg, border: C.blueBorder, i: "⏸" },
+    "Run experiment first": { c: C.amber, bg: C.amberBg, border: C.amberBorder, i: "⚗" },
+    "Partial commit": { c: C.amber, bg: C.amberBg, border: C.amberBorder, i: "◑" },
+    "Exit": { c: C.red, bg: C.redBg, border: C.redBorder, i: "↩" },
   };
   const SC: Record<string, string> = { pass: C.green, warn: C.amber, fail: C.red, skipped: C.textDim };
   const SI: Record<string, string> = { pass: "✓", warn: "⚠", fail: "✕", skipped: "—" };
@@ -1183,8 +1183,8 @@ function Memo({ session, onReset }: { session: AuditSession; onReset: () => void
         {/* Assumptions & disconfirming */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
           {[
-            { title: "Key Assumptions",  c: C.amber, bg: C.amberBg, items: memo?.key_assumptions as string[], b: "·" },
-            { title: "What Changes This", c: C.blue,  bg: C.blueBg,  items: memo?.disconfirming as string[],   b: "→" },
+            { title: "Key Assumptions", c: C.amber, bg: C.amberBg, items: memo?.key_assumptions as string[], b: "·" },
+            { title: "What Changes This", c: C.blue, bg: C.blueBg, items: memo?.disconfirming as string[], b: "→" },
           ].map(s => (
             <div key={s.title} style={{ padding: "18px", background: s.bg, border: `1px solid ${C.border}`, borderRadius: 14 }}>
               <div style={{ fontSize: 12, fontWeight: 600, color: C.textMuted, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 12 }}>{s.title}</div>
@@ -1210,8 +1210,8 @@ function Memo({ session, onReset }: { session: AuditSession; onReset: () => void
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8 }}>
             {MODELS.map(m => {
               const flags = memo?.model_flags as Record<string, { status: string; note: string }> | undefined;
-              const f     = flags?.[m.id];
-              const st    = f?.status || "skipped";
+              const f = flags?.[m.id];
+              const st = f?.status || "skipped";
               const wasRun = session.selectedModels?.some(sm => sm.id === m.id);
               return (
                 <div key={m.id} style={{
@@ -1269,12 +1269,12 @@ function Memo({ session, onReset }: { session: AuditSession; onReset: () => void
 // ── ROOT ORCHESTRATOR ─────────────────────────────────────────────────────────
 export default function AuditApp({ user }: { user: User | null }) {
   type Screen = "category" | "mode" | "quick-intake" | "guided-intake" | "model-select" | "models" | "stress" | "memo";
-  const [screen, setScreen]       = useState<Screen>("category");
-  const [session, setSession]     = useState<AuditSession>({});
+  const [screen, setScreen] = useState<Screen>("category");
+  const [session, setSession] = useState<AuditSession>({});
   const [showPricing, setShowPricing] = useState(false);
   const { credits, loading: creditsLoading, deductCredit, addCredits } = useCredits();
 
-  const upd   = (patch: Partial<AuditSession>) => setSession(s => ({ ...s, ...patch }));
+  const upd = (patch: Partial<AuditSession>) => setSession(s => ({ ...s, ...patch }));
   const reset = () => { setSession({}); setScreen("category"); };
 
   // Called when user clicks "Run X Models →" — gate on credits
@@ -1304,15 +1304,19 @@ export default function AuditApp({ user }: { user: User | null }) {
             transition: "all .15s",
           }}
         >
-          <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 11, fontWeight: 700,
-            color: low ? C.amber : C.textMuted }}>
+          <span style={{
+            fontFamily: "var(--font-jetbrains)", fontSize: 11, fontWeight: 700,
+            color: low ? C.amber : C.textMuted
+          }}>
             {credits} credit{credits !== 1 ? "s" : ""}
           </span>
           {low && <span style={{ fontSize: 10, color: C.amber }}>+ Buy</span>}
         </div>
-        <a href="/dashboard" style={{ fontFamily: "var(--font-jetbrains)", fontSize: 10,
+        <a href="/dashboard" style={{
+          fontFamily: "var(--font-jetbrains)", fontSize: 10,
           letterSpacing: "0.1em", color: C.textDim, textDecoration: "none",
-          textTransform: "uppercase" as const, borderBottom: `1px solid ${C.border}`, paddingBottom: 1 }}>
+          textTransform: "uppercase" as const, borderBottom: `1px solid ${C.border}`, paddingBottom: 1
+        }}>
           My Decisions
         </a>
       </div>
@@ -1323,8 +1327,10 @@ export default function AuditApp({ user }: { user: User | null }) {
     <div style={{ background: C.bg, color: C.text, minHeight: "100vh" }}>
       {/* Fixed top-right credit badge */}
       {user && (
-        <div style={{ position: "fixed", top: 0, right: 16, zIndex: 100,
-          display: "flex", gap: 12, alignItems: "center", padding: "12px 0" }}>
+        <div style={{
+          position: "fixed", top: 0, right: 16, zIndex: 100,
+          display: "flex", gap: 12, alignItems: "center", padding: "12px 0"
+        }}>
           <CreditBadge />
         </div>
       )}
@@ -1337,14 +1343,14 @@ export default function AuditApp({ user }: { user: User | null }) {
         />
       )}
 
-      {screen === "category"      && <CategoryPicker onSelect={c => { upd({ category: c }); setScreen("mode"); }} />}
-      {screen === "mode"          && <ModeSelector category={session.category!} onSelect={m => setScreen(m === "quick" ? "quick-intake" : "guided-intake")} />}
-      {screen === "quick-intake"  && <QuickIntake category={session.category!} onComplete={a => { upd({ intakeAns: a }); setScreen("model-select"); }} />}
+      {screen === "category" && <CategoryPicker onSelect={c => { upd({ category: c }); setScreen("mode"); }} />}
+      {screen === "mode" && <ModeSelector category={session.category!} onSelect={m => setScreen(m === "quick" ? "quick-intake" : "guided-intake")} />}
+      {screen === "quick-intake" && <QuickIntake category={session.category!} onComplete={a => { upd({ intakeAns: a }); setScreen("model-select"); }} />}
       {screen === "guided-intake" && <GuidedIntake category={session.category!} onComplete={a => { upd({ intakeAns: a }); setScreen("model-select"); }} />}
-      {screen === "model-select"  && <ModelSelector category={session.category!} intakeAns={session.intakeAns!} onComplete={handleModelsStart} />}
-      {screen === "models"        && <ModelEngine category={session.category!} intakeAns={session.intakeAns!} selectedModels={session.selectedModels!} onComplete={d => { upd(d); setScreen("stress"); }} />}
-      {screen === "stress"        && <StressTest session={session} onComplete={s => { upd(s); setScreen("memo"); }} />}
-      {screen === "memo"          && <Memo session={session} onReset={reset} />}
+      {screen === "model-select" && <ModelSelector category={session.category!} intakeAns={session.intakeAns!} onComplete={handleModelsStart} />}
+      {screen === "models" && <ModelEngine category={session.category!} intakeAns={session.intakeAns!} selectedModels={session.selectedModels!} onComplete={d => { upd(d); setScreen("stress"); }} />}
+      {screen === "stress" && <StressTest session={session} onComplete={s => { upd(s); setScreen("memo"); }} />}
+      {screen === "memo" && <Memo session={session} onReset={reset} />}
     </div>
   );
 }
