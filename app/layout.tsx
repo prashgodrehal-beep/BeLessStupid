@@ -22,13 +22,22 @@ const jetbrains = JetBrains_Mono({
   weight: ["400", "500", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "BeLessStupid — Decision Engine",
-  description: "A Munger-style decision operating system. Run any major decision through 8 mental models. Get a structured audit, not just advice.",
+export const metadata = {
+  title: "BeLessStupid — Think in Lattices. Decision Engine.",
+  description: "Run any major decision through 8 mental models used by top investors, thinkers. Get a structured Decision Memo in under 10 minutes.",
   openGraph: {
-    title: "BeLessStupid — Decision Engine",
-    description: "Think in lattices. Decide with edge.",
+    title: "BeLessStupid — Think in Lattices. Decision Engine.",
+    description: "Run any major decision through 8 mental models. Get a structured Decision Memo in under 10 minutes, not just advice",
+    url: "https://belessstupid.app",
+    siteName: "BeLessStupid",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BeLessStupid Decision Audit" }],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BeLessStupid",
+    description: "Run any major decision through 8 mental models.",
+    images: ["/og-image.png"],
   },
 };
 
