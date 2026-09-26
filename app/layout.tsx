@@ -23,20 +23,21 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "BeLessStupid — Think in Lattices. Decision Engine.",
-  description: "Run any major decision through 8 mental models used by top investors, thinkers. Get a structured Decision Memo in under 10 minutes.",
+  title: "BeLessStupid — Think in Lattices. Decide with Edge.",
+  description: "A thinking partner that activates your reasoning before important decisions. 3 free audits — no card needed.",
   openGraph: {
-    title: "BeLessStupid — Think in Lattices. Decision Engine.",
-    description: "Run any major decision through 8 mental models. Get a structured Decision Memo in under 10 minutes, not just advice",
-    url: "https://belessstupid.app",
+    title: "BeLessStupid — Don't Outsource Your Decision. Upgrade Your Thinking.",
+    description: "A structured decision engine for career moves, investments, business calls, and major life decisions. 10 minutes. No advice. Just clarity.",
+    url: "https://belessstupid.com",
     siteName: "BeLessStupid",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BeLessStupid Decision Audit" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BeLessStupid — Stress-Test Your Decision" }],
     type: "website",
+    locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BeLessStupid",
-    description: "Run any major decision through 8 mental models.",
+    title: "BeLessStupid — Stress-Test Your Decision",
+    description: "A thinking partner that activates the rational side of your decision-making — before you commit.",
     images: ["/og-image.png"],
   },
 };
