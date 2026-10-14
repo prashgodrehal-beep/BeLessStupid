@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 const C = {
   bg: "#F8F7F4", surface: "#FFFFFF", surfaceHigh: "#F1F0EC",
@@ -174,7 +175,7 @@ function ModelCard({ model, isOpen, onToggle }: { model: typeof MODELS[0]; isOpe
       boxShadow: isOpen ? "0 4px 16px rgba(0,0,0,.08)" : "0 1px 4px rgba(0,0,0,.04)",
     }}>
       <div onClick={onToggle} style={{
-        display: "flex", alignItems: "center", gap: 14, padding: "18px 20px",
+        display: "flex", alignItems: "center", gap: 12, padding: isMobile ? "14px 16px" : "18px 20px",
         cursor: "pointer", background: isOpen ? model.bg : C.surface, transition: "background .2s",
       }}>
         <div style={{
@@ -252,6 +253,7 @@ export default function LearnPage() {
   const router = useRouter();
   const [openId, setOpenId] = useState<string | null>("expected-value");
   const [filter, setFilter] = useState("all");
+  const isMobile = useIsMobile();
 
   const filtered = filter === "all" ? MODELS
     : filter === "simple"   ? MODELS.filter(m => m.complexity === 1)
@@ -261,20 +263,20 @@ export default function LearnPage() {
   return (
     <div style={{ minHeight: "100vh", background: C.bg, color: C.text }}>
       {/* Nav */}
-      <nav style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: "0 32px", position: "sticky", top: 0, zIndex: 50, boxShadow: "0 1px 4px rgba(0,0,0,.04)" }}>
+      <nav style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: `0 ${isMobile ? "16px" : "32px"}`, position: "sticky", top: 0, zIndex: 50, boxShadow: "0 1px 4px rgba(0,0,0,.04)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }} onClick={() => router.push("/")}>
             <div style={{ width: 30, height: 30, borderRadius: 7, background: C.amber, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontFamily: "var(--font-jetbrains)", fontWeight: 700, fontSize: 12 }}>BLS</div>
-            <span style={{ fontFamily: "var(--font-playfair)", fontSize: 16, fontWeight: 700 }}>BeLessStupid</span>
+            {!isMobile && <span style={{ fontFamily: "var(--font-playfair)", fontSize: 16, fontWeight: 700 }}>BeLessStupid</span>}
           </div>
           <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => router.push("/sample")} style={{ padding: "7px 16px", background: C.surface, border: `1.5px solid ${C.border}`, color: C.textMuted, cursor: "pointer", borderRadius: 8, fontSize: 13, fontFamily: "var(--font-dm-sans)" }}>See sample memos</button>
+            {!isMobile && <button onClick={() => router.push("/sample")} style={{ padding: "7px 16px", background: C.surface, border: `1.5px solid ${C.border}`, color: C.textMuted, cursor: "pointer", borderRadius: 8, fontSize: 13, fontFamily: "var(--font-dm-sans)" }}>See sample memos</button>}
             <button onClick={() => router.push("/audit")} style={{ padding: "7px 18px", background: C.amber, border: "none", color: "#fff", cursor: "pointer", borderRadius: 8, fontSize: 13, fontWeight: 500, fontFamily: "var(--font-dm-sans)" }}>Start free audit →</button>
           </div>
         </div>
       </nav>
 
-      <div style={{ maxWidth: 760, margin: "0 auto", padding: "48px 32px 80px" }}>
+      <div style={{ maxWidth: 760, margin: "0 auto", padding: isMobile ? "32px 16px 60px" : "48px 32px 80px" }}>
 
         {/* ── MUNGER INTRO ──────────────────────────────────────────────── */}
         <div className="animate-fade-up" style={{ marginBottom: 52 }}>
@@ -303,7 +305,7 @@ export default function LearnPage() {
           </p>
 
           {/* Why lattice section */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 10, marginBottom: 28 }}>
             {[
               { icon: "🔭", title: "Single model = one lens", desc: "An economist sees every decision as an incentive problem. An engineer sees every decision as a systems problem. Both are partly right — and dangerously incomplete.", color: C.redBg, border: C.redBorder },
               { icon: "🕸", title: "Lattice = multiple lenses", desc: "Running a decision through 8 models catches what any single model misses. Each model adds a layer of clarity the others can't provide.", color: C.greenBg, border: C.greenBorder },
@@ -388,14 +390,14 @@ export default function LearnPage() {
         </div>
 
         {/* Bottom CTA */}
-        <div style={{ marginTop: 48, padding: "28px 32px", background: C.amberBg, border: `1.5px solid ${C.amberBorder}`, borderRadius: 16, textAlign: "center" as const }}>
+        <div style={{ marginTop: 48, padding: isMobile ? "24px 20px" : "28px 32px", background: C.amberBg, border: `1.5px solid ${C.amberBorder}`, borderRadius: 16, textAlign: "center" as const }}>
           <div style={{ fontFamily: "var(--font-playfair)", fontSize: 20, fontWeight: 700, marginBottom: 8 }}>
             Ready to run your own audit?
           </div>
           <p style={{ fontSize: 15, color: C.textMuted, marginBottom: 20, lineHeight: 1.7 }}>
             You get 3 free Decision Audits. Pick any major decision you&apos;re sitting on right now.
           </p>
-          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" as const }}>
+          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexDirection: isMobile ? "column" as const : "row" as const }}>
             <button onClick={() => router.push("/audit")} style={{ padding: "12px 32px", background: C.amber, border: "none", color: "#fff", cursor: "pointer", borderRadius: 8, fontSize: 15, fontWeight: 500, fontFamily: "var(--font-dm-sans)", boxShadow: "0 1px 3px rgba(0,0,0,.12)" }}>Start My Free Audit →</button>
             <button onClick={() => router.push("/sample")} style={{ padding: "12px 22px", background: C.surface, border: `1.5px solid ${C.border}`, color: C.textMuted, cursor: "pointer", borderRadius: 8, fontSize: 14, fontFamily: "var(--font-dm-sans)" }}>See sample memos</button>
           </div>

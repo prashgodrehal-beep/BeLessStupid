@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 const C = {
   bg: "#F8F7F4", surface: "#FFFFFF", surfaceHigh: "#F1F0EC",
@@ -395,24 +396,25 @@ export default function SampleMemo() {
   const router = useRouter();
   const [active, setActive] = useState(0);
   const s = SAMPLES[active];
+  const isMobile = useIsMobile();
 
   return (
     <div style={{ minHeight:"100vh", background:C.bg, color:C.text }}>
       {/* Nav */}
-      <nav style={{ background:C.surface, borderBottom:`1px solid ${C.border}`, padding:"0 32px", position:"sticky", top:0, zIndex:50, boxShadow:"0 1px 4px rgba(0,0,0,.04)" }}>
+      <nav style={{ background:C.surface, borderBottom:`1px solid ${C.border}`, padding:`0 ${isMobile ? "16px" : "32px"}`, position:"sticky", top:0, zIndex:50, boxShadow:"0 1px 4px rgba(0,0,0,.04)" }}>
         <div style={{ maxWidth:760, margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between", height:60 }}>
           <div style={{ display:"flex", alignItems:"center", gap:8, cursor:"pointer" }} onClick={() => router.push("/")}>
             <div style={{ width:30, height:30, borderRadius:7, background:C.amber, display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontFamily:"var(--font-jetbrains)", fontWeight:700, fontSize:12 }}>BLS</div>
-            <span style={{ fontFamily:"var(--font-playfair)", fontSize:16, fontWeight:700 }}>BeLessStupid</span>
+            {!isMobile && <span style={{ fontFamily:"var(--font-playfair)", fontSize:16, fontWeight:700 }}>BeLessStupid</span>}
           </div>
           <div style={{ display:"flex", gap:10 }}>
-            <button onClick={() => router.push("/learn")} style={{ padding:"7px 16px", background:C.surface, border:`1.5px solid ${C.border}`, color:C.textMuted, cursor:"pointer", borderRadius:8, fontSize:13, fontFamily:"var(--font-dm-sans)" }}>Learn the models</button>
+            {!isMobile && <button onClick={() => router.push("/learn")} style={{ padding:"7px 16px", background:C.surface, border:`1.5px solid ${C.border}`, color:C.textMuted, cursor:"pointer", borderRadius:8, fontSize:13, fontFamily:"var(--font-dm-sans)" }}>Learn the models</button>}
             <button onClick={() => router.push("/audit")} style={{ padding:"7px 18px", background:C.amber, border:"none", color:"#fff", cursor:"pointer", borderRadius:8, fontSize:13, fontWeight:500, fontFamily:"var(--font-dm-sans)" }}>Start my own audit →</button>
           </div>
         </div>
       </nav>
 
-      <div style={{ maxWidth:700, margin:"0 auto", padding:"40px 32px 80px" }}>
+      <div style={{ maxWidth:700, margin:"0 auto", padding:isMobile ? "28px 16px 60px" : "40px 32px 80px" }}>
         {/* Page header */}
         <div className="animate-fade-up" style={{ marginBottom:28 }}>
           <div style={{ display:"inline-block", fontFamily:"var(--font-jetbrains)", fontSize:10, letterSpacing:"0.12em", color:C.amber, textTransform:"uppercase" as const, background:C.amberBg, border:`1px solid ${C.amberBorder}`, padding:"3px 12px", borderRadius:20, marginBottom:14 }}>5 Sample Decision Memos</div>
@@ -446,7 +448,7 @@ export default function SampleMemo() {
         <div style={{ marginTop:32, padding:"24px 28px", background:C.amberBg, border:`1.5px solid ${C.amberBorder}`, borderRadius:16, textAlign:"center" as const }}>
           <div style={{ fontFamily:"var(--font-playfair)", fontSize:20, fontWeight:700, marginBottom:8, color:C.text }}>Now run your own audit.</div>
           <p style={{ fontSize:15, color:C.textMuted, marginBottom:18, lineHeight:1.7 }}>Pick any major decision you&apos;re sitting on. 3 free audits — no card needed.</p>
-          <div style={{ display:"flex", gap:10, justifyContent:"center", flexWrap:"wrap" as const }}>
+          <div style={{ display:"flex", gap:10, justifyContent:"center", flexDirection:isMobile ? "column" as const : "row" as const }}>
             <button onClick={() => router.push("/audit")} style={{ padding:"12px 28px", background:C.amber, border:"none", color:"#fff", cursor:"pointer", borderRadius:8, fontSize:15, fontWeight:500, fontFamily:"var(--font-dm-sans)", boxShadow:"0 1px 3px rgba(0,0,0,.12)" }}>Start My Free Audit →</button>
             <button onClick={() => router.push("/learn")} style={{ padding:"12px 22px", background:C.surface, border:`1.5px solid ${C.border}`, color:C.textMuted, cursor:"pointer", borderRadius:8, fontSize:14, fontFamily:"var(--font-dm-sans)" }}>Learn the 8 models first</button>
           </div>
