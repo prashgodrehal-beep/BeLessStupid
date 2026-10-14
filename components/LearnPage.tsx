@@ -175,7 +175,7 @@ function ModelCard({ model, isOpen, onToggle }: { model: typeof MODELS[0]; isOpe
       boxShadow: isOpen ? "0 4px 16px rgba(0,0,0,.08)" : "0 1px 4px rgba(0,0,0,.04)",
     }}>
       <div onClick={onToggle} style={{
-        display: "flex", alignItems: "center", gap: 12, padding: isMobile ? "14px 16px" : "18px 20px",
+        display: "flex", alignItems: "center", gap: 12, padding: "14px 16px",
         cursor: "pointer", background: isOpen ? model.bg : C.surface, transition: "background .2s",
       }}>
         <div style={{
